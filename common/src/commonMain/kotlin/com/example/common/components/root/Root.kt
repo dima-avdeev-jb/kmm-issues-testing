@@ -9,17 +9,12 @@ import com.example.common.components.main.Main
 interface Root {
   val childStack: Value<ChildStack<*, Child>>
 
-  fun openAuthorizationPage()
-  fun openMainPage()
+  fun openBPage()
+  fun openAPage()
 
   sealed class Child {
     class B(val component: Authorization) : Child()
     class A(val component: Main) : Child()
   }
 
-
-  sealed class Output {
-    object HomePage : Output()
-    object WelcomePage : Output()
-  }
 }

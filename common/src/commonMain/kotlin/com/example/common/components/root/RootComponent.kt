@@ -37,7 +37,7 @@ class RootComponent(
     is Config.Main -> Root.Child.A(component = MainComponent(
       componentContext = componentContext,
       onOpenAuthorizationPage = {
-        openAuthorizationPage()
+        openBPage()
       }
     ))
 
@@ -47,17 +47,17 @@ class RootComponent(
         storeFactory = storeFactory,
         mainContext = Dispatchers.Main,
         onAuthorized = {
-          openMainPage()
+          openAPage()
         }
       )
     )
   }
 
-  override fun openAuthorizationPage() {
+  override fun openBPage() {
     navigation.replaceCurrent(Config.Authorization)
   }
 
-  override fun openMainPage() {
+  override fun openAPage() {
     navigation.replaceCurrent(Config.Main)
   }
 

@@ -9,18 +9,3 @@ import androidx.compose.ui.unit.dp
 import com.example.common.components.main.Main
 import java.util.*
 
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-fun ComposableA(component: Main) {
-
-  Scaffold {
-    Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-      Button(
-        onClick = {
-          component.openAuthorizationPage()
-        }) {
-        Text("A", Modifier.padding(30.dp))
-      }
-    }
-  }
-}
