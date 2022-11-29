@@ -4,13 +4,7 @@ import com.arkivanov.mvikotlin.core.store.Reducer
 import com.arkivanov.mvikotlin.core.store.Store
 import com.arkivanov.mvikotlin.core.store.StoreFactory
 import com.arkivanov.mvikotlin.extensions.coroutines.CoroutineExecutor
-import io.ktor.client.*
-import io.ktor.client.call.*
-import io.ktor.client.request.*
-import io.ktor.util.*
 import kotlinx.coroutines.launch
-import kotlinx.serialization.SerialName
-import kotlinx.serialization.Serializable
 import org.koin.core.component.KoinComponent
 
 class AuthorizationStoreFactory(
@@ -62,13 +56,3 @@ class AuthorizationStoreFactory(
   }
 }
 
-@Serializable
-data class LoginResponse(
-  @SerialName("Status")
-  val status: Status
-) {
-  @Serializable
-  data class Status(
-    val id: String?
-  )
-}

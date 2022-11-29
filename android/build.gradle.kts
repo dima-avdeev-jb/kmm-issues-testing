@@ -8,7 +8,7 @@ group "com.example"
 version "1.0-SNAPSHOT"
 
 repositories {
-  jcenter()
+  mavenCentral()
 }
 
 dependencies {
@@ -24,6 +24,9 @@ dependencies {
 }
 
 android {
+  buildFeatures {
+    compose = true
+  }
   compileSdkVersion(33)
   defaultConfig {
     applicationId = "com.example.android"

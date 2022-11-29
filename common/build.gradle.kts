@@ -37,9 +37,6 @@ kotlin {
         implementation(Deps.Koin.Core)
         implementation(Deps.Coroutines.Core)
         implementation(Deps.Settings)
-        implementation(Deps.Ktor.Core)
-        implementation(Deps.Ktor.ContentNegotiation)
-        implementation(Deps.Ktor.SerializationKotlinxJson)
       }
     }
     val commonTest by getting {
@@ -52,9 +49,6 @@ kotlin {
         api("androidx.appcompat:appcompat:1.2.0")
         api("androidx.core:core-ktx:1.3.1")
         api("androidx.compose.material3:material3:1.1.0-alpha02")
-
-        implementation(Deps.Ktor.OkHttpClient)
-        implementation(Deps.Koin.Android)
       }
     }
     val androidTest by getting {

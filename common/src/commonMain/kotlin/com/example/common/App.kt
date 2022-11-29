@@ -32,7 +32,7 @@ fun App(root: RootComponent) {
         .fillMaxSize()
     ) {
       when (val child = it.instance) {
-        is Root.Child.WelcomeChild -> WelcomePage(child.component)
+        is Root.Child.WelcomeChild -> Text("skip")
         is Root.Child.MainChild -> MainPage(child.component)
         is Root.Child.AuthorizationChild -> LoginPage(child.component)
       }
