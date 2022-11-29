@@ -13,8 +13,8 @@ import com.arkivanov.decompose.extensions.compose.jetbrains.stack.animation.stac
 import com.arkivanov.decompose.extensions.compose.jetbrains.subscribeAsState
 import com.example.common.components.root.Root
 import com.example.common.components.root.RootComponent
-import comcommon.ui.authorization.LoginPage
-import comcommon.ui.main.MainPage
+import comcommon.ui.authorization.ComposableB
+import comcommon.ui.main.ComposableA
 
 @OptIn(ExperimentalDecomposeApi::class)
 @Composable
@@ -32,8 +32,8 @@ fun App(root: RootComponent) {
     ) {
       when (val child = it.instance) {
         is Root.Child.WelcomeChild -> Text("skip")
-        is Root.Child.MainChild -> MainPage(child.component)
-        is Root.Child.AuthorizationChild -> LoginPage(child.component)
+        is Root.Child.MainChild -> ComposableA(child.component)
+        is Root.Child.AuthorizationChild -> ComposableB(child.component)
       }
     }
   }

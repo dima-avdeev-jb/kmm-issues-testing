@@ -11,7 +11,7 @@ import java.util.*
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MainPage(component: Main) {
+fun ComposableA(component: Main) {
 
   Scaffold {
     Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
@@ -19,7 +19,7 @@ fun MainPage(component: Main) {
         onClick = {
           component.openAuthorizationPage()
         }) {
-        Text("Press me", Modifier.padding(20.dp))
+        Text("A", Modifier.padding(30.dp))
       }
     }
   }
