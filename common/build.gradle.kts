@@ -45,7 +45,8 @@ kotlin {
       dependencies {
         api("androidx.appcompat:appcompat:1.2.0")
         api("androidx.core:core-ktx:1.3.1")
-        api("androidx.compose.material3:material3:1.1.0-alpha02")
+
+        api("androidx.compose.material3:material3:1.1.0-alpha02")//comment me
 //        api("androidx.compose.material3:material3:1.0.1") // todo If we change material3 version to 1.0.1 - all will be fine!
       }
     }
