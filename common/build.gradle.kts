@@ -36,7 +36,6 @@ kotlin {
         implementation(Deps.MviKotlin.MviKotlinCoroutines)
         implementation(Deps.Koin.Core)
         implementation(Deps.Coroutines.Core)
-        implementation(Deps.Settings)
       }
     }
     val commonTest by getting {
