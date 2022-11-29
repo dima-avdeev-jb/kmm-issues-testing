@@ -11,11 +11,8 @@ import com.arkivanov.essenty.parcelable.Parcelize
 import com.arkivanov.mvikotlin.core.store.StoreFactory
 import com.example.common.components.authorization.AuthorizationComponent
 import com.example.common.components.main.MainComponent
-import com.example.common.components.welcome.WelcomeComponent
-import com.russhwolf.settings.Settings
 import kotlinx.coroutines.Dispatchers
 import org.koin.core.component.KoinComponent
-import org.koin.core.component.inject
 
 class RootComponent(
   componentContext: ComponentContext,
@@ -37,32 +34,18 @@ class RootComponent(
     config: Config,
     componentContext: ComponentContext
   ): Root.Child = when (config) {
-    is Config.Welcome -> Root.Child.WelcomeChild(
-      component = WelcomeComponent(
-        componentContext = componentContext,
-        storeFactory = storeFactory,
-        mainContext = Dispatchers.Main,
-        onServerValid = {
-          openAuthorizationPage()
-        }
-      )
-    )
-
-    is Config.Main -> Root.Child.MainChild(component = MainComponent(
+    is Config.Main -> Root.Child.A(component = MainComponent(
       componentContext = componentContext,
       onOpenAuthorizationPage = {
         openAuthorizationPage()
       }
     ))
 
-    is Config.Authorization -> Root.Child.AuthorizationChild(
+    is Config.Authorization -> Root.Child.B(
       component = AuthorizationComponent(
         componentContext = componentContext,
         storeFactory = storeFactory,
         mainContext = Dispatchers.Main,
-        onOpenWelcomePage = {
-          openWelcomePage()
-        },
         onAuthorized = {
           openMainPage()
         }
@@ -74,18 +57,11 @@ class RootComponent(
     navigation.replaceCurrent(Config.Authorization)
   }
 
-  override fun openWelcomePage() {
-    navigation.replaceCurrent(Config.Welcome)
-  }
-
   override fun openMainPage() {
     navigation.replaceCurrent(Config.Main)
   }
 
   private sealed class Config : Parcelable {
-    @Parcelize
-    object Welcome : Config()
-
     @Parcelize
     object Authorization : Config()
 

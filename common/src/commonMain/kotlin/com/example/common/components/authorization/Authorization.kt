@@ -4,7 +4,6 @@ import com.arkivanov.decompose.value.Value
 
 interface Authorization {
   val state: Value<State>
-  fun openWelcomePage()
 
   data class State(
     val username: String,

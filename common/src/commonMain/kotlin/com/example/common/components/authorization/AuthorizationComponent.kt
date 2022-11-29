@@ -18,7 +18,6 @@ class AuthorizationComponent(
   componentContext: ComponentContext,
   storeFactory: StoreFactory,
   mainContext: CoroutineContext,
-  private val onOpenWelcomePage: () -> Unit,
   private val onAuthorized: () -> Unit,
 ) : Authorization, ComponentContext by componentContext {
 
@@ -46,10 +45,6 @@ class AuthorizationComponent(
         }
       }
     }
-  }
-
-  override fun openWelcomePage() {
-    onOpenWelcomePage()
   }
 
   override fun updatePassword(password: String) {

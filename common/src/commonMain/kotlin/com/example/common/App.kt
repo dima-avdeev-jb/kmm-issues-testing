@@ -31,9 +31,8 @@ fun App(root: RootComponent) {
         .fillMaxSize()
     ) {
       when (val child = it.instance) {
-        is Root.Child.WelcomeChild -> Text("skip")
-        is Root.Child.MainChild -> ComposableA(child.component)
-        is Root.Child.AuthorizationChild -> ComposableB(child.component)
+        is Root.Child.A -> ComposableA(child.component)
+        is Root.Child.B -> ComposableB(child.component)
       }
     }
   }
