@@ -15,7 +15,6 @@ import com.example.common.components.root.Root
 import com.example.common.components.root.RootComponent
 import comcommon.ui.authorization.LoginPage
 import comcommon.ui.main.MainPage
-import comcommon.ui.welcome.WelcomePage
 
 @OptIn(ExperimentalDecomposeApi::class)
 @Composable
