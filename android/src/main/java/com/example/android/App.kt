@@ -47,11 +47,3 @@ fun App(childStackValue: Value<ChildStack<*, Root.Child>>, clickA: () -> Unit) {
         }
     }
 }
-
-interface Root {
-    val childStack: Value<ChildStack<*, Child>>
-    sealed class Child {
-        class B() : Child()
-        class A() : Child()
-    }
-}
