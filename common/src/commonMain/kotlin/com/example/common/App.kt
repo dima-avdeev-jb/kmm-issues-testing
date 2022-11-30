@@ -39,7 +39,7 @@ fun App(root: RootComponent) {
             Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
               Button(
                 onClick = {
-                  child.component.openAuthorizationPage()
+                  child.component.openB()
                 }) {
                 Text("A", Modifier.padding(30.dp))
               }

@@ -13,7 +13,7 @@ interface Root {
   fun openAPage()
 
   sealed class Child {
-    class B(val component: Authorization) : Child()
+    class B() : Child()
     class A(val component: Main) : Child()
   }
 

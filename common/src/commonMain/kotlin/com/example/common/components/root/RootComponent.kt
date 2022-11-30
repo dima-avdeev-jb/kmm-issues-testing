@@ -8,21 +8,17 @@ import com.arkivanov.decompose.router.stack.replaceCurrent
 import com.arkivanov.decompose.value.Value
 import com.arkivanov.essenty.parcelable.Parcelable
 import com.arkivanov.essenty.parcelable.Parcelize
-import com.arkivanov.mvikotlin.core.store.StoreFactory
-import com.example.common.components.authorization.AuthorizationComponent
-import com.example.common.components.main.MainComponent
-import kotlinx.coroutines.Dispatchers
+import com.example.common.components.main.Main
 import org.koin.core.component.KoinComponent
 
 class RootComponent(
-  componentContext: ComponentContext,
-  private val storeFactory: StoreFactory
+  componentContext: ComponentContext
 ) : Root, KoinComponent, ComponentContext by componentContext {
   private val navigation = StackNavigation<Config>()
 
   private val stack = childStack(
     source = navigation,
-    initialConfiguration = Config.Main,
+    initialConfiguration = Config.A,
     handleBackButton = true,
     childFactory = ::createChild
   )
@@ -34,38 +30,29 @@ class RootComponent(
     config: Config,
     componentContext: ComponentContext
   ): Root.Child = when (config) {
-    is Config.Main -> Root.Child.A(component = MainComponent(
-      componentContext = componentContext,
-      onOpenAuthorizationPage = {
-        openBPage()
-      }
-    ))
-
-    is Config.Authorization -> Root.Child.B(
-      component = AuthorizationComponent(
-        componentContext = componentContext,
-        storeFactory = storeFactory,
-        mainContext = Dispatchers.Main,
-        onAuthorized = {
-          openAPage()
+    is Config.A -> Root.Child.A(
+      object : Main, ComponentContext by componentContext {
+        override fun openB() {
+          openBPage()
         }
-      )
+      }
     )
+    is Config.B -> Root.Child.B()
   }
 
   override fun openBPage() {
-    navigation.replaceCurrent(Config.Authorization)
+    navigation.replaceCurrent(Config.B)
   }
 
   override fun openAPage() {
-    navigation.replaceCurrent(Config.Main)
+    navigation.replaceCurrent(Config.A)
   }
 
   private sealed class Config : Parcelable {
     @Parcelize
-    object Authorization : Config()
+    object B : Config()
 
     @Parcelize
-    object Main : Config()
+    object A : Config()
   }
 }
