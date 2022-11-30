@@ -17,8 +17,6 @@ import com.arkivanov.decompose.extensions.compose.jetbrains.stack.Children
 import com.arkivanov.decompose.extensions.compose.jetbrains.stack.animation.fade
 import com.arkivanov.decompose.extensions.compose.jetbrains.stack.animation.stackAnimation
 import com.arkivanov.decompose.extensions.compose.jetbrains.subscribeAsState
-import com.example.common.components.root.Root
-import com.example.common.components.root.RootComponent
 
 @OptIn(ExperimentalDecomposeApi::class, ExperimentalMaterial3Api::class)
 @Composable

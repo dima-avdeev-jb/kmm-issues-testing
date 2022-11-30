@@ -1,8 +1,7 @@
-package com.example.common.components.root
+package com.example.common
 
 import com.arkivanov.decompose.router.stack.ChildStack
 import com.arkivanov.decompose.value.Value
-import com.example.common.components.main.Main
 
 
 interface Root {
@@ -12,6 +11,6 @@ interface Root {
 
   sealed class Child {
     class B() : Child()
-    class A(val component: Main) : Child()
+    class A(val component: ScreenA) : Child()
   }
 }
