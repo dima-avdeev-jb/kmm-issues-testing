@@ -1,4 +1,6 @@
-## Describle Issue https://github.com/JetBrains/compose-jb/issues/2505
+## Reproduce and describe Issue's with Material3 1.1.0-alpha02
+ - https://partnerissuetracker.corp.google.com/issues/258907850
+ - https://github.com/JetBrains/compose-jb/issues/2505  
 
 Pay attention to:
  - [build.gradle.kts](android%2Fbuild.gradle.kts) implementation("androidx.compose.material3...)
