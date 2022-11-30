@@ -11,8 +11,8 @@ import kotlinx.parcelize.Parcelize
 interface Root {
     val childStack: Value<ChildStack<*, Child>>
     sealed class Child {
-        class B() : Child()
-        class A() : Child()
+        object A : Child()
+        object B : Child()
     }
 }
 
@@ -24,8 +24,8 @@ class RootComponent(
         initialConfiguration = Config.A,
         childFactory = { config: Config, _ ->
             when (config) {
-                is Config.A -> Root.Child.A()
-                is Config.B -> Root.Child.B()
+                is Config.A -> Root.Child.A
+                is Config.B -> Root.Child.B
             }
         }
     )

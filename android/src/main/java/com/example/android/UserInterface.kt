@@ -18,11 +18,12 @@ import com.arkivanov.decompose.extensions.compose.jetbrains.stack.animation.fade
 import com.arkivanov.decompose.extensions.compose.jetbrains.stack.animation.stackAnimation
 import com.arkivanov.decompose.extensions.compose.jetbrains.subscribeAsState
 import com.arkivanov.decompose.router.stack.ChildStack
+import com.arkivanov.decompose.router.stack.replaceCurrent
 import com.arkivanov.decompose.value.Value
 
 @OptIn(ExperimentalDecomposeApi::class, ExperimentalMaterial3Api::class)
 @Composable
-fun App(childStackValue: Value<ChildStack<*, Root.Child>>, clickA: () -> Unit) {
+fun UserInterface(childStackValue: Value<ChildStack<*, Root.Child>>) {
     val childStack by childStackValue.subscribeAsState()
     Children(
         stack = childStack,
@@ -33,7 +34,8 @@ fun App(childStackValue: Value<ChildStack<*, Root.Child>>, clickA: () -> Unit) {
             is Root.Child.A -> {
                 Scaffold {//TODO without material3 Scaffold, all work's fine
                     Button(
-                        onClick = { clickA() }) {
+                        onClick = { navigation.replaceCurrent(Config.B) }
+                    ) {
                         Text("A", Modifier.padding(40.dp))
                     }
                 }
