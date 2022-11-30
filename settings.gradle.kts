@@ -18,4 +18,4 @@ pluginManagement {
 
 rootProject.name = "kmm-issues-testing"
 
-include(":android", ":desktop", ":common")
+include(":android", ":common")
