@@ -17,6 +17,9 @@ import com.arkivanov.decompose.extensions.compose.jetbrains.stack.Children
 import com.arkivanov.decompose.extensions.compose.jetbrains.stack.animation.fade
 import com.arkivanov.decompose.extensions.compose.jetbrains.stack.animation.stackAnimation
 import com.arkivanov.decompose.extensions.compose.jetbrains.subscribeAsState
+import com.arkivanov.decompose.router.stack.ChildStack
+import com.arkivanov.decompose.router.stack.replaceCurrent
+import com.arkivanov.decompose.value.Value
 
 @OptIn(ExperimentalDecomposeApi::class, ExperimentalMaterial3Api::class)
 @Composable
@@ -28,26 +31,32 @@ fun App(root: RootComponent) {
     modifier = Modifier.fillMaxSize(),
     animation = stackAnimation(fade()) //TODO without animation, all work's fine
   ) {
-    Box(
-      modifier = Modifier.fillMaxSize()
-    ) {
       when (val child = it.instance) {
         is Root.Child.A -> {
           Scaffold {//TODO without material3 Scaffold, all work's fine
-            Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-              Button(
-                onClick = {
-                  child.component.openB()
-                }) {
-                Text("A", Modifier.padding(30.dp))
-              }
+            Button(
+              onClick = {
+                navigation.replaceCurrent(Config.B)
+              }) {
+              Text("A", Modifier.padding(40.dp))
             }
           }
         }
         is Root.Child.B -> {
-          Text("Bug fixed, if you see this message")
+          Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+            Text("Bug fixed, if you see this message")
+          }
         }
       }
-    }
+
+  }
+}
+
+interface Root {
+  val childStack: Value<ChildStack<*, Child>>
+
+  sealed class Child {
+    class B() : Child()
+    class A() : Child()
   }
 }

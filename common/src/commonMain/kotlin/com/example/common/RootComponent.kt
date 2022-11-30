@@ -13,38 +13,26 @@ import org.koin.core.component.KoinComponent
 class RootComponent(
   componentContext: ComponentContext
 ) : Root, KoinComponent, ComponentContext by componentContext {
-  private val navigation = StackNavigation<Config>()
 
   private val stack = childStack(
     source = navigation,
     initialConfiguration = Config.A,
-    handleBackButton = true,
     childFactory = ::createChild
   )
 
-  override val childStack: Value<ChildStack<*, Root.Child>>
-    get() = stack
+  override val childStack: Value<ChildStack<*, Root.Child>> = stack
 
   private fun createChild(config: Config, componentContext: ComponentContext): Root.Child = when (config) {
-    is Config.A -> Root.Child.A(
-      object : ScreenA, ComponentContext by componentContext {
-        override fun openB() {
-          openBPage()
-        }
-      }
-    )
+    is Config.A -> Root.Child.A()
     is Config.B -> Root.Child.B()
   }
 
-  override fun openBPage() {
-    navigation.replaceCurrent(Config.B)
-  }
+}
 
-  private sealed class Config : Parcelable {
-    @Parcelize
-    object B : Config()
-
-    @Parcelize
-    object A : Config()
-  }
+val navigation = StackNavigation<Config>()
+sealed class Config : Parcelable {
+  @Parcelize
+  object B : Config()
+  @Parcelize
+  object A : Config()
 }

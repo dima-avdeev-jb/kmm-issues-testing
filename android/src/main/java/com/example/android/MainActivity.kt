@@ -16,9 +16,7 @@ class MainActivity : AppCompatActivity() {
     )
 
     setContent {
-      MaterialTheme {
-        App(root)
-      }
+      App(root)
     }
   }
 }
