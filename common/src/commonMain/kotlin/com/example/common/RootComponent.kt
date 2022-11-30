@@ -8,11 +8,3 @@ import com.arkivanov.decompose.value.Value
 import com.arkivanov.essenty.parcelable.Parcelable
 import com.arkivanov.essenty.parcelable.Parcelize
 
-val navigation = StackNavigation<Config>()
-
-sealed class Config : Parcelable {
-  @Parcelize
-  object B : Config()
-  @Parcelize
-  object A : Config()
-}
