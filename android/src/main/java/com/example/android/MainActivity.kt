@@ -11,7 +11,6 @@ import com.arkivanov.decompose.router.stack.StackNavigation
 import com.arkivanov.decompose.router.stack.childStack
 import com.arkivanov.decompose.router.stack.replaceCurrent
 import com.arkivanov.decompose.value.Value
-import com.example.common.*
 import kotlinx.parcelize.Parcelize
 
 class MainActivity : AppCompatActivity() {
