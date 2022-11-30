@@ -8,21 +8,6 @@ import com.arkivanov.decompose.value.Value
 import com.arkivanov.essenty.parcelable.Parcelable
 import com.arkivanov.essenty.parcelable.Parcelize
 
-class RootComponent(
-  componentContext: ComponentContext
-) : Root, ComponentContext by componentContext {
-  override val childStack: Value<ChildStack<*, Root.Child>> = childStack(
-    source = navigation,
-    initialConfiguration = Config.A,
-    childFactory = { config: Config, _ ->
-      when (config) {
-        is Config.A -> Root.Child.A()
-        is Config.B -> Root.Child.B()
-      }
-    }
-  )
-}
-
 val navigation = StackNavigation<Config>()
 
 sealed class Config : Parcelable {

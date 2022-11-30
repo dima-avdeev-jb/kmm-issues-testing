@@ -14,47 +14,44 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.arkivanov.decompose.ExperimentalDecomposeApi
 import com.arkivanov.decompose.extensions.compose.jetbrains.stack.Children
+import com.arkivanov.decompose.extensions.compose.jetbrains.stack.animation.fade
+import com.arkivanov.decompose.extensions.compose.jetbrains.stack.animation.stackAnimation
 import com.arkivanov.decompose.extensions.compose.jetbrains.subscribeAsState
 import com.arkivanov.decompose.router.stack.ChildStack
-import com.arkivanov.decompose.router.stack.replaceCurrent
 import com.arkivanov.decompose.value.Value
 
 @OptIn(ExperimentalDecomposeApi::class, ExperimentalMaterial3Api::class)
 @Composable
-fun App(childStackValue: Value<ChildStack<*, Root.Child>>) {
-  val childStack by childStackValue.subscribeAsState()
-
-  Children(
-    stack = childStack,
-    modifier = Modifier.fillMaxSize(),
-//    animation = stackAnimation(fade()) //TODO without animation, all work's fine
-  ) {
-      when (it.instance) {
-        is Root.Child.A -> {
-          Scaffold {//TODO without material3 Scaffold, all work's fine
-            Button(
-              onClick = {
-                navigation.replaceCurrent(Config.B)
-              }) {
-              Text("A", Modifier.padding(40.dp))
+fun App(childStackValue: Value<ChildStack<*, Root.Child>>, clickA: () -> Unit) {
+    val childStack by childStackValue.subscribeAsState()
+    Children(
+        stack = childStack,
+        modifier = Modifier.fillMaxSize(),
+        animation = stackAnimation(fade()) //TODO without animation, all work's fine
+    ) {
+        when (it.instance) {
+            is Root.Child.A -> {
+                Scaffold {//TODO without material3 Scaffold, all work's fine
+                    Button(
+                        onClick = { clickA() }) {
+                        Text("A", Modifier.padding(40.dp))
+                    }
+                }
             }
-          }
-        }
-        is Root.Child.B -> {
-          Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-            Text("Bug fixed, if you see this message")
-          }
-        }
-      }
 
-  }
+            is Root.Child.B -> {
+                Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                    Text("Bug fixed, if you see this message")
+                }
+            }
+        }
+    }
 }
 
 interface Root {
-  val childStack: Value<ChildStack<*, Child>>
-
-  sealed class Child {
-    class B() : Child()
-    class A() : Child()
-  }
+    val childStack: Value<ChildStack<*, Child>>
+    sealed class Child {
+        class B() : Child()
+        class A() : Child()
+    }
 }
