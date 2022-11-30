@@ -31,7 +31,7 @@ fun App(root: RootComponent) {
     modifier = Modifier.fillMaxSize(),
     animation = stackAnimation(fade()) //TODO without animation, all work's fine
   ) {
-      when (val child = it.instance) {
+      when (it.instance) {
         is Root.Child.A -> {
           Scaffold {//TODO without material3 Scaffold, all work's fine
             Button(
