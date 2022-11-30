@@ -29,7 +29,7 @@ fun App(root: RootComponent) {
   Children(
     stack = childStack,
     modifier = Modifier.fillMaxSize(),
-    animation = stackAnimation(fade()) //TODO without animation, all work's fine
+//    animation = stackAnimation(fade()) //TODO without animation, all work's fine
   ) {
       when (it.instance) {
         is Root.Child.A -> {
