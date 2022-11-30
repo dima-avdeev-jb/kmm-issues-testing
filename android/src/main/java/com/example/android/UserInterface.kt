@@ -1,5 +1,6 @@
 package com.example.android
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -13,14 +14,15 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.arkivanov.decompose.ExperimentalDecomposeApi
-import com.arkivanov.decompose.extensions.compose.jetbrains.stack.Children
-import com.arkivanov.decompose.extensions.compose.jetbrains.stack.animation.fade
-import com.arkivanov.decompose.extensions.compose.jetbrains.stack.animation.stackAnimation
-import com.arkivanov.decompose.extensions.compose.jetbrains.subscribeAsState
+import com.arkivanov.decompose.extensions.compose.jetpack.stack.Children
+import com.arkivanov.decompose.extensions.compose.jetpack.stack.animation.fade
+import com.arkivanov.decompose.extensions.compose.jetpack.stack.animation.stackAnimation
+import com.arkivanov.decompose.extensions.compose.jetpack.subscribeAsState
 import com.arkivanov.decompose.router.stack.ChildStack
 import com.arkivanov.decompose.router.stack.replaceCurrent
 import com.arkivanov.decompose.value.Value
 
+@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalDecomposeApi::class, ExperimentalMaterial3Api::class)
 @Composable
 fun UserInterface(childStackValue: Value<ChildStack<*, Root.Child>>) {
@@ -32,9 +34,9 @@ fun UserInterface(childStackValue: Value<ChildStack<*, Root.Child>>) {
     ) {
         when (it.instance) {
             is Root.Child.A -> {
-                Scaffold {//TODO without material3 Scaffold, all work's fine
+                Scaffold { //TODO without material3 Scaffold, all work's fine
                     Button(
-                        onClick = { navigation.replaceCurrent(Config.B) }
+                        onClick = { navigation.replaceCurrent(Config.B) },
                     ) {
                         Text("A", Modifier.padding(40.dp))
                     }
