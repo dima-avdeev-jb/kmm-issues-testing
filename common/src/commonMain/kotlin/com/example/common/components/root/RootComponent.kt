@@ -44,10 +44,6 @@ class RootComponent(
     navigation.replaceCurrent(Config.B)
   }
 
-  override fun openAPage() {
-    navigation.replaceCurrent(Config.A)
-  }
-
   private sealed class Config : Parcelable {
     @Parcelize
     object B : Config()
