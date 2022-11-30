@@ -36,41 +36,23 @@ kotlin {
         implementation(Deps.Coroutines.Core)
       }
     }
-    val commonTest by getting {
-      dependencies {
-        implementation(kotlin("test"))
-      }
-    }
     val androidMain by getting {
       dependencies {
         api("androidx.appcompat:appcompat:1.2.0")
-        api("androidx.core:core-ktx:1.3.1")
 
         api("androidx.compose.material3:material3:1.1.0-alpha02")//comment this line
 //        api("androidx.compose.material3:material3:1.0.1") // todo If we change material3 version to 1.0.1 - all will be fine!
       }
     }
-    val androidTest by getting {
-      dependencies {
-        implementation("junit:junit:4.13")
-      }
-    }
-    val desktopMain by getting {
-      dependencies {
-        api(compose.preview)
-        implementation(Deps.Ktor.ApacheClient)
-      }
-    }
-    val desktopTest by getting
   }
 }
 
 android {
-  compileSdkVersion(33)
+  compileSdk = 33
   sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
   defaultConfig {
-    minSdkVersion(24)
-    targetSdkVersion(33)
+    minSdk = 24
+    targetSdk = 33
   }
   compileOptions {
     sourceCompatibility = JavaVersion.VERSION_1_8
