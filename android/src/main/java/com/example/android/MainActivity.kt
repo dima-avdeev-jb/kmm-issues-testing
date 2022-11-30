@@ -4,7 +4,6 @@ import com.example.common.App
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.material3.MaterialTheme
 import com.arkivanov.decompose.defaultComponentContext
 import com.example.common.RootComponent
 
@@ -14,9 +13,8 @@ class MainActivity : AppCompatActivity() {
     val root = RootComponent(
       componentContext = defaultComponentContext()
     )
-
     setContent {
-      App(root)
+      App(root.childStack)
     }
   }
 }

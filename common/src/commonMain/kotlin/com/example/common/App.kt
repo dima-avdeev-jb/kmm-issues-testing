@@ -14,8 +14,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.arkivanov.decompose.ExperimentalDecomposeApi
 import com.arkivanov.decompose.extensions.compose.jetbrains.stack.Children
-import com.arkivanov.decompose.extensions.compose.jetbrains.stack.animation.fade
-import com.arkivanov.decompose.extensions.compose.jetbrains.stack.animation.stackAnimation
 import com.arkivanov.decompose.extensions.compose.jetbrains.subscribeAsState
 import com.arkivanov.decompose.router.stack.ChildStack
 import com.arkivanov.decompose.router.stack.replaceCurrent
@@ -23,8 +21,8 @@ import com.arkivanov.decompose.value.Value
 
 @OptIn(ExperimentalDecomposeApi::class, ExperimentalMaterial3Api::class)
 @Composable
-fun App(root: RootComponent) {
-  val childStack by root.childStack.subscribeAsState()
+fun App(childStackValue: Value<ChildStack<*, Root.Child>>) {
+  val childStack by childStackValue.subscribeAsState()
 
   Children(
     stack = childStack,
